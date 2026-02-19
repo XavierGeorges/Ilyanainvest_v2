@@ -1,0 +1,32 @@
+import React from 'react';
+
+export const TransitionSection: React.FC = () => {
+  return (
+    <section 
+        className="relative py-40 lg:py-56 bg-fixed bg-center bg-cover" 
+        style={{ 
+            // Image evocative of Moroccan warmth/architecture
+            backgroundImage: "url('https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=2070&auto=format&fit=crop')" 
+        }}
+    >
+      {/* Dark Overlay for contrast */}
+      <div className="absolute inset-0 bg-slate-900/70"></div>
+      
+      {/* Content */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+        <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-10 leading-[1.2] tracking-tight">
+          "Plus qu'un investissement, une immersion. <br className="hidden lg:block" />
+          On vous ouvre les portes, vous écrivez l'histoire."
+        </h2>
+        
+        <div className="inline-flex items-center justify-center gap-6 animate-fade-in-up">
+            <div className="h-0.5 w-16 bg-primary rounded-full"></div>
+            <p className="text-xl md:text-2xl font-bold text-primary tracking-[0.2em] uppercase">
+                La Team Ilyana
+            </p>
+            <div className="h-0.5 w-16 bg-primary rounded-full"></div>
+        </div>
+      </div>
+    </section>
+  );
+};
