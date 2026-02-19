@@ -1,19 +1,12 @@
 import { GoogleGenAI } from "@google/genai";
 
-const apiKey = process.env.API_KEY || '';
-
-// Initialize the client only if the key exists to prevent immediate errors on load if missing
-// In a real app, we'd handle this more gracefully.
-const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
+// Initialize the client directly assuming API_KEY is present in process.env as per guidelines
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const generateInvestmentAdvice = async (
   userMessage: string,
   history: { role: string; text: string }[] = []
 ): Promise<string> => {
-  if (!ai) {
-    return "Le système d'IA est actuellement en maintenance (Clé API manquante). Veuillez réessayer plus tard.";
-  }
-
   try {
     // Construct the full conversation history including the new user message for the stateless request
     // Note: The structure must match the Content interface expected by generateContent
