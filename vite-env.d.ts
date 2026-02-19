@@ -1,4 +1,4 @@
-/// <reference types="vite/client" />
+// Fixed: Removed reference to 'vite/client' to resolve "Cannot find type definition file" error.
 
 declare namespace NodeJS {
   interface ProcessEnv {

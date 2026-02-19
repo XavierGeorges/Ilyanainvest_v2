@@ -132,9 +132,9 @@ export const Partners: React.FC<PartnersProps> = ({ onNavigate }) => {
                     </div>
                     
                     <div className="pl-4 border-l-2 border-slate-700 mt-2 space-y-1 text-slate-400">
-                        <p>> Fetching cadastre info... <span className="text-green-400">[DONE]</span></p>
-                        <p>> Analyzing legal claims... <span className="text-green-400">[CLEAN]</span></p>
-                        <p>> Calculating projected Yield... <span className="text-yellow-400">[PROCESSING]</span></p>
+                        <p>{'>'} Fetching cadastre info... <span className="text-green-400">[DONE]</span></p>
+                        <p>{'>'} Analyzing legal claims... <span className="text-green-400">[CLEAN]</span></p>
+                        <p>{'>'} Calculating projected Yield... <span className="text-yellow-400">[PROCESSING]</span></p>
                     </div>
 
                     <div className="mt-4 p-4 bg-white/5 border border-white/10 rounded-lg animate-pulse">
