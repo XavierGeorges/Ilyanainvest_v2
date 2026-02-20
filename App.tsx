@@ -84,7 +84,7 @@ function App() {
     <div className="min-h-screen bg-background-light overflow-x-hidden flex flex-col justify-between">
       <Header onNavigate={setCurrentPage} />
       {renderContent()}
-      {currentPage !== 'booking' && <Footer onNavigate={setCurrentPage} showCta={currentPage !== 'promoter-lp'} />}
+      {currentPage !== 'booking' && currentPage !== 'promoter-lp' && <Footer onNavigate={setCurrentPage} showCta={true} />}
       <GeminiAdvisor onNavigate={setCurrentPage} />
     </div>
   );
