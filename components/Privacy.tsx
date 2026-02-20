@@ -1,8 +1,11 @@
 import React from 'react';
+import { FloatingBack } from './FloatingBack';
+import { PageType } from '../types';
 
-export const Privacy: React.FC = () => {
+export const Privacy: React.FC<{onNavigate: (page: PageType) => void}> = ({onNavigate}) => {
   return (
     <div className="pt-32 pb-24 px-6 min-h-screen bg-white">
+      <FloatingBack onNavigate={onNavigate} />
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-black text-slate-900 mb-8 tracking-tight">Politique de Confidentialité</h1>
         

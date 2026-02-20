@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type PageType = 'home' | 'legal' | 'privacy' | 'service-acquisition' | 'service-build' | 'service-management' | 'destination-casablanca' | 'destination-marrakech' | 'destination-essaouira' | 'promoter-lp';
+export type PageType = 'home' | 'legal' | 'privacy' | 'service-acquisition' | 'service-build' | 'service-management' | 'destination-casablanca' | 'destination-marrakech' | 'destination-essaouira' | 'promoter-lp' | 'booking';
 
 export interface NavItem {
   label: string;

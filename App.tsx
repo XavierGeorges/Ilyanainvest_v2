@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { InfiniteMarquee } from './components/InfiniteMarquee';
+
+import { StickyBottomBar } from './components/StickyBottomBar';
 import { Services } from './components/Services';
 import { Roadmap } from './components/Roadmap';
 import { Partners } from './components/Partners';
@@ -20,6 +21,7 @@ import { Privacy } from './components/Privacy';
 import { ServiceDetail } from './components/ServiceDetail';
 import { DestinationDetail } from './components/DestinationDetail';
 import { PromoterLP } from './components/PromoterLP';
+import { BookingPage } from './components/BookingPage';
 import { PageType } from './types';
 
 function App() {
@@ -28,9 +30,9 @@ function App() {
   const renderContent = () => {
     switch (currentPage) {
       case 'legal':
-        return <Legal />;
+        return <Legal onNavigate={setCurrentPage} />;
       case 'privacy':
-        return <Privacy />;
+        return <Privacy onNavigate={setCurrentPage} />;
       case 'service-acquisition':
         return <ServiceDetail type="acquisition" onNavigate={setCurrentPage} />;
       case 'service-build':
@@ -45,23 +47,34 @@ function App() {
         return <DestinationDetail city="essaouira" onNavigate={setCurrentPage} />;
       case 'promoter-lp':
         return <PromoterLP onNavigate={setCurrentPage} />;
+      case 'booking':
+        return <BookingPage onNavigate={setCurrentPage} />;
       case 'home':
       default:
         return (
           <main>
-            <Hero />
-            <InfiniteMarquee />
-            <Destinations onNavigate={setCurrentPage} />
-            <Services onNavigate={setCurrentPage} />
-            <Roadmap />
-            <Partners onNavigate={setCurrentPage} />
-            <DueDiligence />
-            <BuyersAdvantage />
-            <NetworkTransitionSection />
-            <ExpertEcosystem />
-            <TransmissionNote />
-            <Concierge />
-            <TransitionSection />
+
+
+            <Hero onNavigate={setCurrentPage} />
+            
+            {/* 
+                Container for the rest of the page. 
+                Removed solid bg and shadow to allow the "Destinations" section to show the fixed Hero image through transparency.
+            */}
+            <div className="relative z-20">
+                <Destinations onNavigate={setCurrentPage} />
+                <Services onNavigate={setCurrentPage} />
+                <Roadmap />
+                <Partners onNavigate={setCurrentPage} />
+                <DueDiligence />
+                <BuyersAdvantage onNavigate={setCurrentPage} />
+                <NetworkTransitionSection />
+                <ExpertEcosystem />
+                <TransmissionNote />
+                <Concierge />
+                <TransitionSection />
+                <StickyBottomBar onNavigate={setCurrentPage} />
+            </div>
           </main>
         );
     }
@@ -71,8 +84,8 @@ function App() {
     <div className="min-h-screen bg-background-light overflow-x-hidden flex flex-col justify-between">
       <Header onNavigate={setCurrentPage} />
       {renderContent()}
-      <Footer onNavigate={setCurrentPage} />
-      <GeminiAdvisor />
+      {currentPage !== 'booking' && <Footer onNavigate={setCurrentPage} showCta={currentPage !== 'promoter-lp'} />}
+      <GeminiAdvisor onNavigate={setCurrentPage} />
     </div>
   );
 }

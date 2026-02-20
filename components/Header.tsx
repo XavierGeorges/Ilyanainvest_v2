@@ -45,10 +45,8 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
     { label: "Tiers de confiance", href: "#concept" },
     { label: "Services", href: "#services" },
     { label: "Process", href: "#roadmap" },
-    { label: "Partenaires", href: "#partners" },
+    { label: "Partenaires", href: "#ecosystem" },
   ];
-
-  const whatsappLink = "https://wa.me/212721415548";
 
   return (
     <header 
@@ -87,14 +85,12 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
         </div>
 
         <div className="hidden md:flex items-center gap-4">
-          <a 
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button 
+            onClick={() => onNavigate('booking')}
             className="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all transform hover:scale-105 shadow-xl shadow-primary/20 block"
           >
             Réserver mon Créneau
-          </a>
+          </button>
         </div>
 
         {/* Mobile Toggle */}
@@ -119,14 +115,15 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               {link.label}
             </a>
           ))}
-          <a 
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button 
+            onClick={() => {
+                setMobileMenuOpen(false);
+                onNavigate('booking');
+            }}
             className="bg-primary text-white px-6 py-3 rounded-full text-base font-bold w-full text-center block"
           >
             Réserver mon Créneau
-          </a>
+          </button>
         </div>
       )}
     </header>

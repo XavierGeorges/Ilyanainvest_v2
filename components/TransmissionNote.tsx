@@ -13,25 +13,26 @@ export const TransmissionNote: React.FC = () => {
             Livrable Final
           </div>
           <h2 className="text-3xl lg:text-5xl font-black mb-6 tracking-tight leading-tight">
-            La Note de Transmission :<br/>
-            <span className="text-slate-400">Votre aide à la décision finale.</span>
+            La Note de Transmission<br/>
+            <span className="text-slate-400">Votre aide à la décision finale</span>
           </h2>
-          <p className="text-lg text-slate-400 leading-relaxed mb-8">
-            À J+37, vous ne recevez pas une simple annonce, mais une analyse complète de 15+ pages pour décider avec des certitudes.
-          </p>
           
           <ul className="space-y-5 mb-10">
              <li className="flex items-center gap-3 text-slate-300">
                 <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                <span>Photos Drone HD & Visite Virtuelle 360°</span>
+                <span>Note de Transmission exhaustive</span>
              </li>
              <li className="flex items-center gap-3 text-slate-300">
                 <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                <span>Business Plan & Cash-flow prévisionnel sur 10 ans</span>
+                <span>Audit complet : atouts, défauts et conformité doc</span>
              </li>
              <li className="flex items-center gap-3 text-slate-300">
                 <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                <span>Analyse SWOT & Rapport Cadastral certifié</span>
+                <span>Scoring interne & matching personnalisé</span>
+             </li>
+             <li className="flex items-center gap-3 text-slate-300">
+                <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
+                <span>Aide à la décision objective</span>
              </li>
           </ul>
         </div>

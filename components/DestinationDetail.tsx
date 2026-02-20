@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft, ArrowRight, TrendingUp, Building2, Users, MapPin, Search, Cpu } from 'lucide-react';
 import { PageType } from '../types';
+import { FloatingBack } from './FloatingBack';
 
 interface DestinationDetailProps {
   city: 'casablanca' | 'marrakech' | 'essaouira';
@@ -59,6 +60,7 @@ export const DestinationDetail: React.FC<DestinationDetailProps> = ({ city, onNa
 
   return (
     <div className="min-h-screen bg-background-light pt-20 animate-fade-in">
+      <FloatingBack onNavigate={onNavigate} targetSection="destinations" />
       
       {/* Navigation */}
       <div className="bg-white/80 backdrop-blur border-b border-slate-200 sticky top-20 z-40 px-6 py-4">

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { ShieldCheck, FileSearch, Scale, Building, Lock, RotateCw, Search } from 'lucide-react';
+import React from 'react';
+import { ShieldCheck, FileSearch, Scale, Building, Search, Cpu, CheckCircle2 } from 'lucide-react';
 
 interface CheckpointProps {
   item: {
+    id: string;
     title: string;
     subtitle: string;
     description: string;
@@ -10,62 +11,60 @@ interface CheckpointProps {
   };
 }
 
-const DiligenceFlipCard: React.FC<CheckpointProps> = ({ item }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-
+const MotherboardCard: React.FC<CheckpointProps> = ({ item }) => {
   return (
-    <div 
-      className="h-64 w-full cursor-pointer [perspective:1000px] group"
-      onClick={() => setIsFlipped(!isFlipped)}
-    >
+    <div className="group relative bg-slate-900 rounded-2xl border border-slate-800 p-6 overflow-hidden hover:border-emerald-500/50 transition-colors duration-500 h-full flex flex-col">
+      
+      {/* Circuit Grid Background */}
       <div 
-        className={`relative h-full w-full transition-all duration-700 [transform-style:preserve-3d] shadow-sm hover:shadow-xl rounded-2xl ${
-          isFlipped ? '[transform:rotateY(180deg)]' : ''
-        }`}
-      >
-        {/* Front Face */}
-        <div 
-            className="absolute inset-0 h-full w-full [backface-visibility:hidden] rounded-2xl border border-slate-100 bg-white p-6 flex flex-col justify-between overflow-hidden"
-            style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
-        >
-           {/* Decor */}
-           <div className="absolute -right-4 -top-4 bg-emerald-50 rounded-full w-24 h-24 blur-2xl"></div>
+        className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+        style={{ 
+            backgroundImage: `linear-gradient(rgba(16, 185, 129, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(16, 185, 129, 0.1) 1px, transparent 1px)`, 
+            backgroundSize: '20px 20px' 
+        }}
+      ></div>
 
-           <div className="relative z-10">
-              <div className="bg-slate-50 w-12 h-12 rounded-xl flex items-center justify-center text-slate-900 mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
-                {item.icon}
-              </div>
-              <h3 className="font-bold text-slate-900 text-lg mb-1">{item.title}</h3>
-              <p className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest border border-emerald-100 bg-emerald-50 inline-block px-2 py-0.5 rounded">
+      {/* Decorative Circuit Lines (Corners) */}
+      <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-slate-700 rounded-tl-xl opacity-50 group-hover:border-emerald-500/30 transition-colors"></div>
+      <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-slate-700 rounded-br-xl opacity-50 group-hover:border-emerald-500/30 transition-colors"></div>
+
+      {/* Glowing 'Connector' Dot */}
+      <div className="absolute top-6 right-6 flex items-center gap-2">
+         <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest group-hover:text-emerald-400 transition-colors">sys_check</span>
+         <div className="w-1.5 h-1.5 rounded-full bg-slate-700 group-hover:bg-emerald-500 group-hover:shadow-[0_0_8px_rgba(16,185,129,0.8)] transition-all duration-300"></div>
+      </div>
+
+      {/* Icon 'Socket' */}
+      <div className="relative mb-6">
+        <div className="w-14 h-14 bg-slate-950 rounded-lg border border-slate-700 flex items-center justify-center shadow-inner group-hover:shadow-[inset_0_0_15px_rgba(16,185,129,0.1)] transition-all">
+             <div className="text-slate-400 group-hover:text-emerald-400 transition-colors duration-300">
+                {React.cloneElement(item.icon as React.ReactElement<any>, { className: "w-7 h-7" })}
+             </div>
+        </div>
+        {/* Connector Line from Icon */}
+        <div className="absolute top-1/2 left-14 w-8 h-[1px] bg-slate-700 group-hover:bg-emerald-500/50 transition-colors"></div>
+        <div className="absolute top-1/2 left-[calc(3.5rem+2rem)] w-1 h-1 bg-slate-600 rounded-full group-hover:bg-emerald-400 transition-colors"></div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 flex-1 flex flex-col">
+        <div className="mb-4">
+            <span className="text-[10px] font-bold font-mono text-emerald-600 bg-emerald-950/30 border border-emerald-900/50 px-2 py-0.5 rounded mb-2 inline-block">
                 {item.subtitle}
-              </p>
-           </div>
-
-           <div className="flex items-center gap-2 text-xs font-bold text-slate-400 mt-4 group-hover:text-emerald-600 transition-colors">
-              <RotateCw className="w-4 h-4" />
-              <span>Voir le point de contrôle</span>
-           </div>
+            </span>
+            <h3 className="text-xl font-bold text-white group-hover:text-emerald-50 transition-colors">
+                {item.title}
+            </h3>
         </div>
 
-        {/* Back Face */}
-        <div 
-            className="absolute inset-0 h-full w-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-2xl bg-emerald-900 text-white p-6 flex flex-col justify-center text-center shadow-xl border border-emerald-800"
-            style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
-        >
-          <div className="absolute top-4 right-4 opacity-20">
-            <ShieldCheck className="w-12 h-12" />
-          </div>
-          
-          <h3 className="text-lg font-bold text-emerald-400 mb-4">{item.title}</h3>
-          <p className="text-emerald-100 text-sm leading-relaxed">
+        <p className="text-sm text-slate-400 leading-relaxed font-light border-l-2 border-slate-800 pl-4 group-hover:border-emerald-500/30 transition-colors mb-6 flex-1">
             {item.description}
-          </p>
-          
-          <div className="mt-6 flex justify-center">
-            <div className="bg-emerald-800/50 px-3 py-1 rounded-full text-[10px] font-mono text-emerald-400 border border-emerald-700">
-              [ STATUS: VERIFIED ]
-            </div>
-          </div>
+        </p>
+
+        {/* Footer 'Code' */}
+        <div className="mt-auto pt-4 border-t border-slate-800 flex justify-between items-center opacity-60 group-hover:opacity-100 transition-opacity">
+            <span className="text-[9px] font-mono text-slate-500">MODULE_ID: {item.id}</span>
+            <CheckCircle2 className="w-4 h-4 text-emerald-800 group-hover:text-emerald-500 transition-colors" />
         </div>
       </div>
     </div>
@@ -75,53 +74,58 @@ const DiligenceFlipCard: React.FC<CheckpointProps> = ({ item }) => {
 export const DueDiligence: React.FC = () => {
   const checkpoints = [
     {
+      id: "LEG_01",
       title: "Vérification Hypothécaire",
-      subtitle: "Conservation Foncière",
-      description: "Analyse approfondie du certificat de propriété pour garantir l'absence de saisies, d'hypothèques cachées ou de litiges en cours.",
-      icon: <FileSearch className="w-6 h-6" />
+      subtitle: "CONSERVATION FONCIÈRE",
+      description: "Scan complet du certificat de propriété. Détection des saisies, hypothèques cachées ou litiges dormants avant toute transaction.",
+      icon: <FileSearch />
     },
     {
+      id: "URB_02",
       title: "Audit Urbanistique",
-      subtitle: "Note de Renseignement",
-      description: "Validation rigoureuse des droits à construire, du zonage et de la conformité avec le plan d'aménagement urbain.",
-      icon: <Building className="w-6 h-6" />
+      subtitle: "NOTE DE RENSEIGNEMENT",
+      description: "Analyse croisée des plans d'aménagement. Validation des droits à construire, du zonage et de la conformité cadastrale.",
+      icon: <Building />
     },
     {
+      id: "FIN_03",
       title: "Conformité VNR",
-      subtitle: "Office des Changes",
-      description: "Contrôle de la Valeur Non Révisable (VNR) pour sécuriser et garantir la convertibilité et le rapatriement futur de vos fonds.",
-      icon: <Scale className="w-6 h-6" />
+      subtitle: "OFFICE DES CHANGES",
+      description: "Validation de la Valeur Non Révisable pour garantir contractuellement la convertibilité et le rapatriement futur de vos fonds.",
+      icon: <Scale />
     },
     {
+      id: "DEV_04",
       title: "Audit Promoteur",
-      subtitle: "Si VEFA (Vente sur Plan)",
-      description: "Analyse de la réputation, de la solvabilité financière et de l'historique de livraison du promoteur immobilier.",
-      icon: <Search className="w-6 h-6" />
+      subtitle: "RISK ASSESSMENT",
+      description: "Enquête de solvabilité sur le promoteur (si VEFA). Analyse de l'historique de livraison et de la santé financière.",
+      icon: <Cpu />
     }
   ];
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden" id="compliance">
+    <section className="py-24 bg-white relative overflow-hidden z-20 rounded-t-[50px] md:rounded-t-[80px] -mt-20" id="compliance">
        {/* Background decorative elements */}
-       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-40"></div>
+       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60"></div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-widest mb-6">
-            <Lock className="w-3 h-3" />
-            Le Coffre-Fort - Compliance
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-white text-xs font-bold uppercase tracking-widest mb-6 shadow-xl">
+            <ShieldCheck className="w-3 h-3 text-emerald-400" />
+            Security Layer
           </div>
           <h2 className="text-3xl lg:text-5xl font-black text-slate-900 mb-6 tracking-tight">
-            Zéro zone d'ombre :<br/>Notre protocole de Due Diligence.
+            Zéro zone d'ombre :<br/>Notre protocole de Due Diligence
           </h2>
           <p className="text-slate-500 text-lg max-w-2xl mx-auto">
-            Pour chaque actif, nous déployons une grille d'audit stricte. Cliquez sur les cartes pour révéler les points de contrôle.
+            Nous ne faisons pas confiance, nous vérifions. Chaque actif passe par notre grille d'analyse technique avant d'être proposé.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Grid des cartes 'Motherboard' */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
           {checkpoints.map((item, idx) => (
-            <DiligenceFlipCard key={idx} item={item} />
+            <MotherboardCard key={idx} item={item} />
           ))}
         </div>
       </div>

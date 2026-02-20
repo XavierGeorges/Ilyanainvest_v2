@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft, CheckCircle2, Cpu, Database, LineChart, Terminal, Shield, Zap, ArrowRight, Activity, Layers, Code2 } from 'lucide-react';
 import { PageType } from '../types';
+import { FloatingBack } from './FloatingBack';
 
 interface ServiceDetailProps {
   type: 'acquisition' | 'build' | 'management';
@@ -40,7 +41,7 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ type, onNavigate }
     },
     build: {
       theme: "blue-600",
-      badge: "George & Partners",
+      badge: "Georges & Partners",
       title: "Smart Construction (MOD)",
       subtitle: "Le BTP piloté comme du code.",
       description: "La rénovation et la construction au Maroc souffrent d'opacité. Nous appliquons des process industriels et une couche technologique pour garantir délais, coûts et qualité. Votre chantier devient un dashboard.",
@@ -94,6 +95,7 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ type, onNavigate }
 
   return (
     <div className="min-h-screen bg-background-light pt-20 animate-fade-in">
+      <FloatingBack onNavigate={onNavigate} targetSection="services" />
       
       {/* Navigation Bar */}
       <div className="bg-white/80 backdrop-blur border-b border-slate-200 sticky top-20 z-40 px-6 py-4">
@@ -144,10 +146,10 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ type, onNavigate }
                 <p className="text-lg text-slate-600 leading-relaxed mb-10">
                     {current.description}
                 </p>
-                <div className="grid grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                     {current.stats.map((stat, idx) => (
                         <div key={idx} className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-                            <p className={`text-3xl font-black ${themeColor} mb-1`}>{stat.value}</p>
+                            <p className={`text-3xl font-black ${themeColor} mb-1 break-words`}>{stat.value}</p>
                             <p className="text-xs text-slate-400 uppercase tracking-widest font-bold">{stat.label}</p>
                         </div>
                     ))}

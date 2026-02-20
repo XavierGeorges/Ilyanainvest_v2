@@ -3,10 +3,10 @@ import React from 'react';
 export const NetworkTransitionSection: React.FC = () => {
   return (
     <section 
-        className="relative py-40 lg:py-56 bg-fixed bg-center bg-cover" 
+        className="relative py-40 lg:py-56 bg-fixed bg-center bg-cover -mt-20 z-10" 
         style={{ 
             // Symbolic image of a door/archway for "opening doors"
-            backgroundImage: "url('https://images.unsplash.com/photo-1535202685089-7634f18d7c4a?q=80&w=2071&auto=format&fit=crop')" 
+            backgroundImage: "url('https://res.cloudinary.com/dmjvspbcq/image/upload/v1771522429/Gemini_Generated_Image_95kb9p95kb9p95kb-ezgif.com-png-to-webp-converter_goozgu.webp')" 
         }}
     >
       {/* Dark Overlay for contrast */}
@@ -15,8 +15,7 @@ export const NetworkTransitionSection: React.FC = () => {
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-10 leading-[1.2] tracking-tight">
-          "La data éclaire le chemin, mais c'est le réseau qui ouvre les portes. <br className="hidden lg:block" />
-          On vous connecte au meilleur du Maroc."
+          "Data, Humain, Réseau : l'exclusivité marocaine avec précision"
         </h2>
         
         <div className="inline-flex items-center justify-center gap-6 animate-fade-in-up">

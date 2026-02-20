@@ -1,10 +1,17 @@
 import React from 'react';
-import { ArrowRight, Activity, ShieldCheck, MapPin, Ban, HeartHandshake, Building2 } from 'lucide-react';
+import { ArrowRight, Activity, ShieldCheck, MapPin, HeartHandshake, Building2 } from 'lucide-react';
+import { PageType } from '../types';
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+    onNavigate: (page: PageType) => void;
+}
+
+export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-20">
-      <div className="absolute inset-0 z-0">
+    <section className="relative min-h-[90vh] flex items-center pt-32 pb-24">
+      
+      {/* Fixed Background Layer - Stays put while content scrolls */}
+      <div className="fixed inset-0 z-0 w-full h-full pointer-events-none">
         {/* Changed gradient from dark to light slate/white for readability of dark text */}
         <div className="absolute inset-0 bg-gradient-to-r from-slate-50 via-slate-50/90 to-transparent z-10 lg:w-3/4"></div>
         <div 
@@ -16,7 +23,8 @@ export const Hero: React.FC = () => {
         ></div>
       </div>
 
-      <div className="relative z-20 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 w-full mt-16 md:mt-24">
+      {/* Reduced top margin (negative) to move content up visually */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 w-full">
         <div className="flex flex-col justify-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-6 w-fit animate-fade-in-up">
             <span className="relative flex h-2 w-2">
@@ -35,15 +43,13 @@ export const Hero: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-10">
-            <a 
-              href="https://wa.me/212721415548"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button 
+              onClick={() => onNavigate('booking')}
               className="bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-full text-xl font-bold transition-all shadow-2xl shadow-primary/30 flex items-center justify-center gap-3 group transform hover:scale-105"
             >
-              Réserver mon Créneau
+              Réserver mon Audit
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-            </a>
+            </button>
           </div>
 
           <div className="flex flex-wrap gap-4">
@@ -54,10 +60,6 @@ export const Hero: React.FC = () => {
             <div className="px-4 py-2 rounded-lg bg-white border border-slate-200 shadow-sm text-slate-900 font-bold text-sm flex items-center gap-2">
                 <Building2 className="w-4 h-4 text-blue-600" />
                 B2B & Institutional Ready
-            </div>
-            <div className="px-4 py-2 rounded-lg bg-white border border-slate-200 shadow-sm text-slate-900 font-bold text-sm flex items-center gap-2">
-                <Ban className="w-4 h-4 text-primary" />
-                0 mandat de vente
             </div>
           </div>
         </div>

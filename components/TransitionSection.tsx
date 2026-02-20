@@ -3,10 +3,10 @@ import React from 'react';
 export const TransitionSection: React.FC = () => {
   return (
     <section 
-        className="relative py-40 lg:py-56 bg-fixed bg-center bg-cover" 
+        className="relative py-40 lg:py-56 bg-fixed bg-center bg-cover -mt-20 z-10" 
         style={{ 
             // Image evocative of Moroccan warmth/architecture
-            backgroundImage: "url('https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=2070&auto=format&fit=crop')" 
+            backgroundImage: "url('https://res.cloudinary.com/dmjvspbcq/image/upload/v1771522207/Gemini_Generated_Image_l8urmml8urmml8ur-ezgif.com-png-to-webp-converter_rjxj0g.webp')" 
         }}
     >
       {/* Dark Overlay for contrast */}

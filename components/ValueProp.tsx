@@ -24,7 +24,11 @@ const FlipCard: React.FC<PropCardProps> = ({ icon, title, description }) => {
         {/* Front Face */}
         <div 
           className="absolute inset-0 h-full w-full [backface-visibility:hidden] rounded-2xl border border-slate-100 bg-background-light shadow-sm hover:border-primary/30 hover:shadow-xl transition-all flex flex-col items-center justify-center p-8 text-center"
-          style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
+          style={{ 
+            backfaceVisibility: 'hidden', 
+            WebkitBackfaceVisibility: 'hidden',
+            transform: 'translateZ(1px)' 
+          }}
         >
           <div className="text-primary mb-6 transform group-hover:scale-110 transition-transform duration-300 bg-primary/10 p-4 rounded-full">
             {icon}
@@ -39,8 +43,12 @@ const FlipCard: React.FC<PropCardProps> = ({ icon, title, description }) => {
 
         {/* Back Face */}
         <div 
-          className="absolute inset-0 h-full w-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-2xl bg-slate-900 text-white p-8 flex flex-col items-center justify-center text-center shadow-xl border border-slate-800"
-          style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
+          className="absolute inset-0 h-full w-full [backface-visibility:hidden] rounded-2xl bg-slate-900 text-white p-8 flex flex-col items-center justify-center text-center shadow-xl border border-slate-800"
+          style={{ 
+            backfaceVisibility: 'hidden', 
+            WebkitBackfaceVisibility: 'hidden',
+            transform: 'rotateY(180deg) translateZ(1px)'
+          }}
         >
           <h3 className="text-xl font-bold text-primary mb-6">{title}</h3>
           <p className="text-slate-300 leading-relaxed text-sm">
